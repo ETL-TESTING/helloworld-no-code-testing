@@ -1,0 +1,33 @@
+{
+    "scenarioName": "Validate the GET api @@Richard",     // <--- Free text with author meta data
+    "steps": [
+        {
+            "name": "get_user_details",                   // <--- Hook for next step
+            "url": "/users/octocat",                      // <--- Http URL relative to the host
+            "method": "GET",                              // <--- Http method GET, PUT, POST or DELETE etc
+            "retry": {
+                "max": 5,
+                "delay": 500                              // <--- configurable retry options
+            },
+            "request": {
+                "headers": {
+                    "Content-Type": "application/json"    // <--- Http request headers
+                },
+                "queryParams":{
+                    "type": "user"                        // <--- Http query params
+                }
+            },
+            "verify": {
+                "status": 200,                            // <--- Http status code
+                "headers": {
+                    "Content-Type": [
+                        "application/json; charset=utf-8" // <--- Http response headers
+                    ]
+                },
+                "body": {
+                    "login": "octocat"                    // <--- Http response payload
+                }
+            }
+        }
+    ]
+}
