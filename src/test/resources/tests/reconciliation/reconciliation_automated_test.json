@@ -1,0 +1,41 @@
+{
+    "scenarioName": "DbSqlExecutor: Load a CSV file with headers - PostgreSQL",
+    "steps": [
+        {
+            "name": "Test database setup",
+            "url": "org.jsmart.zerocode.core.db.DbSqlExecutor",
+            "operation": "EXECUTE",
+            "request": {
+                "sql": "DROP SCHEMA IF EXISTS recon CASCADE; CREATE SCHEMA recon; CREATE TABLE recon.source_customer2 (id INTEGER, email TEXT);ALTER DATABASE stagingrepdb SET search_path = recon, public;"
+            },
+            "verify": { }
+        },
+        {
+            "name": "load_from_csv",
+            "url": "org.jsmart.zerocode.core.db.DbSqlExecutor",
+            "operation": "LOADCSV",
+            "request": {
+                "tableName": "source_customer2",
+                "csvSource": "data/source_customer.csv",
+                "withHeaders" : true
+            },
+            "verify": { 
+                "size" : 1
+            }
+        },
+        {
+            "name": "Check the content of inserted rows",
+            "url": "org.jsmart.zerocode.core.db.DbSqlExecutor",
+            "operation": "EXECUTE",
+            "request": {
+                "sql": "SELECT ID, EMAIL FROM stagingrepdb.recon.source_customer2 ORDER BY ID"
+            },
+            "verify": {
+                "rows.SIZE": 1,
+                "rows" : [
+                    {"id" : 111, "email" : "ronaldo@gmail.com"}
+                ]
+            }
+        }
+    ]
+}
