@@ -3,7 +3,7 @@
     "steps": [
         {
             "name": "source_record_count",
-            "url": "org.jsmart.zerocode.core.db.DbSqlExecutor",
+            "url": "db://MagicExecutor",
             "operation": "EXECUTE",
             "request": {
                 "sql": "${GQL.FILE:sql/source_count.sql}"

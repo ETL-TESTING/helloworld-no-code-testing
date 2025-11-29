@@ -11,7 +11,7 @@ public class ReconciliationTest {
 
 	@Test
 	@Scenario("tests/reconciliation/reconciliation_automated_test.json")
-	public void testDbCsvLoadWithHeaders() throws Exception {
+	public void testScenario() throws Exception {
 	}
 
 }

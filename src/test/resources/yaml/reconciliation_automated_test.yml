@@ -2,7 +2,7 @@ scenarioName: "DbSqlExecutor: Load a CSV file with headers - PostgreSQL"
 steps:
 
   - name: "test_source_count"
-    url: "org.jsmart.zerocode.core.db.DbSqlExecutor"
+    url: "db://MagicExecutor"
     operation: "EXECUTE"
     request:
       sql: |
@@ -17,7 +17,7 @@ steps:
           distinct_customer_ids: 2
 
   - name: "setup_db_objects"
-    url: "org.jsmart.zerocode.core.db.DbSqlExecutor"
+    url: "db://MagicExecutor"
     operation: "EXECUTE"
     request:
       sql: |
@@ -28,7 +28,7 @@ steps:
     verify: { }
 
   - name: "load_from_csv"
-    url: "org.jsmart.zerocode.core.db.DbSqlExecutor"
+    url: "db://MagicExecutor"
     operation: "LOADCSV"
     request:
       tableName: "source_customer2"
@@ -38,7 +38,7 @@ steps:
       size: 1
 
   - name: "Check the content of inserted rows"
-    url: "org.jsmart.zerocode.core.db.DbSqlExecutor"
+    url: "db://MagicExecutor"
     operation: "EXECUTE"
     request:
       sql: |

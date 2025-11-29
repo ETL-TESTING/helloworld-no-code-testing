@@ -3,7 +3,7 @@
     "steps": [
         {
             "name": "source_record_count",
-            "url": "org.jsmart.zerocode.core.db.DbSqlExecutor",
+            "url": "db://MagicExecutor",
             "operation": "EXECUTE",
             "request": {
                 "sql": "${GQL.FILE:sql/source_count.sql}"
@@ -12,7 +12,7 @@
         },
         {
             "name": "Test database setup",
-            "url": "org.jsmart.zerocode.core.db.DbSqlExecutor",
+            "url": "db://MagicExecutor",
             "operation": "EXECUTE",
             "request": {
                 "sql": "DROP SCHEMA IF EXISTS recon CASCADE; CREATE SCHEMA recon; CREATE TABLE recon.source_customer2 (id INTEGER, email TEXT);ALTER DATABASE stagingrepdb SET search_path = recon, public;"
@@ -21,7 +21,7 @@
         },
         {
             "name": "load_from_csv",
-            "url": "org.jsmart.zerocode.core.db.DbSqlExecutor",
+            "url": "db://MagicExecutor",
             "operation": "LOADCSV",
             "request": {
                 "tableName": "source_customer2",
@@ -34,7 +34,7 @@
         },
         {
             "name": "Check the content of inserted rows",
-            "url": "org.jsmart.zerocode.core.db.DbSqlExecutor",
+            "url": "db://MagicExecutor",
             "operation": "EXECUTE",
             "request": {
                 "sql": "SELECT ID, EMAIL FROM stagingrepdb.recon.source_customer2 ORDER BY ID"

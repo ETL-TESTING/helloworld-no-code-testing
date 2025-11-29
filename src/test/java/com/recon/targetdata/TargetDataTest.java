@@ -11,7 +11,7 @@ public class TargetDataTest {
 
 	@Test
 	@Scenario("tests/targetdata/target_automated_test.json")
-	public void testDbCsvLoadWithHeaders() throws Exception {
+	public void testScenario() throws Exception {
 	}
 
 }
