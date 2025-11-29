@@ -1,0 +1,14 @@
+{
+    "scenarioName": "TARGET AUTOMATED TEST @Ben",
+    "steps": [
+        {
+            "name": "target_record_count",
+            "url": "org.jsmart.zerocode.core.db.DbSqlExecutor",
+            "operation": "EXECUTE",
+            "request": {
+                "sql": "${GQL.FILE:sql/target_count.sql}"
+            },
+            "verify": { }
+        }
+    ]
+}

@@ -1,4 +1,4 @@
-package com.recon;
+package com.helloworld;
 
 import org.jsmart.zerocode.core.domain.Scenario;
 import org.jsmart.zerocode.core.domain.TargetEnv;
