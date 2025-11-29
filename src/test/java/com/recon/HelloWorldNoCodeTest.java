@@ -1,4 +1,4 @@
-package com.example;
+package com.recon;
 
 import org.jsmart.zerocode.core.domain.Scenario;
 import org.jsmart.zerocode.core.domain.TargetEnv;
@@ -7,12 +7,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 @TargetEnv("configs/host.properties") //<-------- Host configurations
 @RunWith(ZeroCodeUnitRunner.class)   // <---------Runner
-public class HelloWorldTest {
+public class HelloWorldNoCodeTest {
 
     @Test
-    @Scenario("tests/hello_world_scenario.json") // <--------- Test scenario
+    @Scenario("helloworld/hello_world_scenario.json") // <--------- Test scenario
     public void testGet() throws Exception {
-
     }
 }
 

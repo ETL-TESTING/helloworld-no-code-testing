@@ -1,4 +1,4 @@
-package com.example;
+package com.recon.reconciliation;
 import org.jsmart.zerocode.core.domain.Scenario;
 import org.jsmart.zerocode.core.domain.TargetEnv;
 import org.jsmart.zerocode.core.runner.ZeroCodeUnitRunner;
@@ -9,9 +9,14 @@ import org.junit.runner.RunWith;
 @RunWith(ZeroCodeUnitRunner.class)
 public class ReconciliationTest {
 
-    @Test
+	@Test
 	@Scenario("tests/reconciliation/reconciliation_automated_test.json")
 	public void testDbCsvLoadWithHeaders() throws Exception {
+	}
+
+	@Test
+	@Scenario("tests_yaml/reconciliation_automated_test.yml")
+	public void testDbCsvLoadWithHeaders_YAML() throws Exception {
 	}
 
 }

@@ -1,0 +1,14 @@
+{
+    "scenarioName": "SOURCE AUTOMATED TEST",
+    "steps": [
+        {
+            "name": "source_record_count",
+            "url": "org.jsmart.zerocode.core.db.DbSqlExecutor",
+            "operation": "EXECUTE",
+            "request": {
+                "sql": "${GQL.FILE:sql/source_count.sql}"
+            },
+            "verify": { }
+        }
+    ]
+}

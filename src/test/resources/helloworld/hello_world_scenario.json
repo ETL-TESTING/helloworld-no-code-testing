@@ -1,5 +1,5 @@
 {
-    "scenarioName": "Validate the GET api @@Richard",     // <--- Free text with author meta data
+    "scenarioName": "HELLOWORLD - VALIDATE THE GET API @@Richard",     // <--- Free text with author meta data
     "steps": [
         {
             "name": "get_user_details",                   // <--- Hook for next step
