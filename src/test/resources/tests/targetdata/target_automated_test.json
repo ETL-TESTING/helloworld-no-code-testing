@@ -6,7 +6,7 @@
             "url": "db://MagicExecutor",
             "operation": "EXECUTE",
             "request": {
-                "sql": "${GQL.FILE:sql/target_count.sql}"
+                "sql": "${SQL.FILE:sql/target_count.sql}"
             },
             "verify": { }
         }

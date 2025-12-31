@@ -1,49 +1,37 @@
 {
-    "scenarioName": "DbSqlExecutor: Load a CSV file with headers - PostgreSQL",
+    "scenarioName": "LOAD SOURCE AND TARGET DATA IN RECON DB AND RUN RECONCILIATION PROCESS @Chandra @Syed",
     "steps": [
         {
-            "name": "source_record_count",
+            "name": "create_recon_db_schema",
             "url": "db://MagicExecutor",
             "operation": "EXECUTE",
             "request": {
-                "sql": "${GQL.FILE:sql/source_count.sql}"
+                "sql": "${SQL.FILE:sql/ddl.sql}"
             },
-            "verify": { }
+            "verify": {}
         },
         {
-            "name": "Test database setup",
-            "url": "db://MagicExecutor",
-            "operation": "EXECUTE",
-            "request": {
-                "sql": "DROP SCHEMA IF EXISTS recon CASCADE; CREATE SCHEMA recon; CREATE TABLE recon.source_customer2 (id INTEGER, email TEXT);ALTER DATABASE stagingrepdb SET search_path = recon, public;"
-            },
-            "verify": { }
-        },
-        {
-            "name": "load_from_csv",
+            "name": "load_source_csv_extract",
             "url": "db://MagicExecutor",
             "operation": "LOADCSV",
             "request": {
-                "tableName": "source_customer2",
+                "tableName": "source_customer",
                 "csvSource": "data/source_customer.csv",
-                "withHeaders" : true
+                "withHeaders": true
             },
-            "verify": { 
-                "size" : 1
+            "verify": {
+                "size": 2
             }
         },
         {
-            "name": "Check the content of inserted rows",
+            "name": "check_loaded_source_data_count",
             "url": "db://MagicExecutor",
             "operation": "EXECUTE",
             "request": {
-                "sql": "SELECT ID, EMAIL FROM stagingrepdb.recon.source_customer2 ORDER BY ID"
+                "sql": "SELECT ID, EMAIL FROM stagingrepdb.recon.source_customer ORDER BY ID"
             },
             "verify": {
-                "rows.SIZE": 1,
-                "rows" : [
-                    {"id" : 111, "email" : "ronaldo@gmail.com"}
-                ]
+                "rows.SIZE": "(int)${$.load_source_csv_extract.response.size}"
             }
         }
     ]

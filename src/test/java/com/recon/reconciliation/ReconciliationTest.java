@@ -5,7 +5,7 @@ import org.jsmart.zerocode.core.runner.ZeroCodeUnitRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@TargetEnv("configs/source_db.properties")
+@TargetEnv("configs/recon_db.properties")
 @RunWith(ZeroCodeUnitRunner.class)
 public class ReconciliationTest {
 

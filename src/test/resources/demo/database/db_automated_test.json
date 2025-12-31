@@ -1,0 +1,16 @@
+{
+    "scenarioName": "DEMO - AUTOMATED TESTING OF DB SCENARIOS @Chandra",
+    "steps": [
+        {
+            "name": "demo_step",
+            "url": "db://MagicExecutor",
+            "operation": "EXECUTE",
+            "request": {
+                "sql": "SELECT id, email_id FROM stagingrepdb.public.customer ORDER BY id;"
+            },
+            "verify": {
+                "rows.SIZE": 10
+            }
+        }
+    ]
+}
