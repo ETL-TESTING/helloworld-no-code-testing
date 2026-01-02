@@ -1,5 +1,5 @@
 {
-    "scenarioName": "LOAD SOURCE AND TARGET DATA IN RECON DB AND RUN RECONCILIATION PROCESS @Chandra @Syed",
+    "scenarioName": "PROCESS AND TEST RECONCILIATION END TO END RECON @Jojo #Smoke",
     "steps": [
         {
             "name": "create_recon_db_schema",
@@ -32,6 +32,30 @@
             },
             "verify": {
                 "rows.SIZE": "(int)${$.load_source_csv_extract.response.size}"
+            }
+        },
+        {
+            "name": "load_target_csv_extract",
+            "url": "db://MagicExecutor",
+            "operation": "LOADCSV",
+            "request": {
+                "tableName": "target_persons",
+                "csvSource": "data/target_persons.csv",
+                "withHeaders": true
+            },
+            "verify": {
+                "size": 2
+            }
+        },
+        {
+            "name": "check_loaded_target_data_count",
+            "url": "db://MagicExecutor",
+            "operation": "EXECUTE",
+            "request": {
+                "sql": "SELECT ID, EMAIL FROM stagingrepdb.recon.target_persons ORDER BY ID"
+            },
+            "verify": {
+                "rows.SIZE": "(int)${$.load_target_csv_extract.response.size}"
             }
         }
     ]
